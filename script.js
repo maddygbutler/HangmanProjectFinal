@@ -9,15 +9,23 @@ var guessedLetters= [];
 
 
 function startGame(){
-    word = words[Math.floor(Math.random()* words.length)];
-    console.log(word);
+    document.getElementById("result").innerHTML="";
+    document.getElementById("guessedLetter").innerHTML="";
 
     document.getElementById("guessedLetters").innerHTML="";
     document.getElementById("guesses").innerHTML = "";
 
+    guessedLetters=[];
+    word=[];
+
+
+    word = words[Math.floor(Math.random()* words.length)];
+    console.log(word);
 
 
     printWord();
+
+
 
 
 }
@@ -30,9 +38,14 @@ function printWord(){
             answer += word[i];
         }else{
             answer += " _ ";
+
         }
     }
     document.getElementById("guess").innerHTML  = answer;
+    var end= document.getElementById("result");
+    if(answer.indexOf("_")== -1){
+        end.innerHTML= "You Win!"
+    }
 
 }
 
@@ -45,17 +58,18 @@ function guessLetter(){
 
     document.getElementById("guessedLetters").innerHTML= guessedLetters;
 
+    if(word.indexOf(letter)== -1){
+        guesses = (guesses-1);
+    }
+    var end= document.getElementById("result");
+    if(guesses==0){
+        end.innerHTML="You Loose!"
+    }
     document.getElementById("guesses").innerHTML= guesses;
-    //track guesses and tell user
-
-    //did they win/lose
-
-    //display images?
-
-    //start a new game
-
-
+    console.log(word);
+    console.log(guesses);
 }
+
 
 
 
